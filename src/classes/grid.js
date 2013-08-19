@@ -159,6 +159,12 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         //Show or hide the footer alltogether the footer is enabled by default
         showFooter: false,
 
+        //Show or hide the aggregate row all together the aggregate row is disabled by default
+        showAggregateRow: false,
+
+        //Define an aggregate row template to customize output. See github wiki for more details.
+        aggregateRowTemplate: undefined,
+
         //Show the dropzone for drag and drop grouping
         showGroupPanel: false,
         
@@ -217,7 +223,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
     self.filteredRows = [];
 
     self.initTemplates = function() {
-        var templates = ['rowTemplate', 'aggregateTemplate', 'headerRowTemplate', 'checkboxCellTemplate', 'checkboxHeaderTemplate', 'menuTemplate', 'footerTemplate'];
+        var templates = ['rowTemplate', 'aggregateRowTemplate', 'aggregateTemplate', 'headerRowTemplate', 'checkboxCellTemplate', 'checkboxHeaderTemplate', 'menuTemplate', 'footerTemplate'];
 
         var promises = [];
         angular.forEach(templates, function(template) {
@@ -726,6 +732,7 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
     $scope.selectedItems = self.config.selectedItems;
     $scope.multiSelect = self.config.multiSelect;
     $scope.showFooter = self.config.showFooter;
+    $scope.showAggregateRow = self.config.showAggregateRow;
     $scope.footerRowHeight = $scope.showFooter ? self.config.footerRowHeight : 0;
     $scope.showColumnMenu = self.config.showColumnMenu;
     $scope.showMenu = false;

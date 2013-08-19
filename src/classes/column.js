@@ -49,6 +49,7 @@
     self.cursor = self.sortable ? 'pointer' : 'default';
     self.headerCellTemplate = colDef.headerCellTemplate || $templateCache.get('headerCellTemplate.html');
     self.cellTemplate = colDef.cellTemplate || $templateCache.get('cellTemplate.html').replace(CUSTOM_FILTERS, self.cellFilter ? "|" + self.cellFilter : "");
+    self.aggregateCellTemplate = colDef.aggregateCellTemplate || $templateCache.get('aggregateCellTemplate.html');
     if(self.enableCellEdit) {
         self.cellEditTemplate = $templateCache.get('cellEditTemplate.html');
         self.editableCellTemplate = colDef.editableCellTemplate || $templateCache.get('editableCellTemplate.html');
@@ -71,6 +72,13 @@
         self.headerCellTemplate = $.ajax({
             type: "GET",
             url: colDef.headerCellTemplate,
+            async: false
+        }).responseText;
+    }
+    if (colDef.aggregateCellTemplate && !TEMPLATE_REGEXP.test(colDef.aggregateCellTemplate)) {
+        self.aggregateCellTemplate = $.ajax({
+            type: "GET",
+            url: colDef.aggregateCellTemplate,
             async: false
         }).responseText;
     }
@@ -178,6 +186,7 @@
         self.headerClass = fromCol.headerClass;
         self.headerCellTemplate = fromCol.headerCellTemplate;
         self.cellTemplate = fromCol.cellTemplate;
+        self.aggregateCellTemplate = fromCol.aggregateCellTemplate;
         self.cellEditTemplate = fromCol.cellEditTemplate;
     };
 };

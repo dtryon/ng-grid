@@ -101,7 +101,7 @@
                     configFile: '<%= testFiles.karmaUnit %>',
                     autoWatch: false,
                     singleRun: true,
-                    browsers: browsers || ['Chrome']
+                    browsers: browsers || ['PhantomJS']
                 },
             },
             watch: {
